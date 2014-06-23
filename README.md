@@ -1,0 +1,4 @@
+skypeResolving
+==============
+
+GPLV3
