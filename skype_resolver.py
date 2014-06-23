@@ -19,11 +19,15 @@ class main:
 
     def geoLocate(self, ip):
         for geo in self.geoLocators:
-            wat = requests.get(geo%ip).json()['isp']
+            superWat = requests.get(geo%ip).json()
+            try:
+                wat = superWat['isp']
+            except:
+                wat = None
             if 'Microsoft' in wat or 'Cogent' in wat:
                 return 'Microsoft'
             else:
-                return wat
+                return "%s in %s, %s"%(wat, superWat['city'], superWat['country'])
 
     def doIp2Skype(self, ip):
         return {'error': 'not implemented'}
